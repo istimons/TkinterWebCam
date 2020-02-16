@@ -1,3 +1,11 @@
+"""
+_istimons
+
+tkinter GUI gave it a shot; webCam in tkinter
+
+"""
+
+
 import tkinter
 from tkinter import *
 from tkinter import ttk
