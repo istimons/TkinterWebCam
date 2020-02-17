@@ -53,14 +53,12 @@ class App:
 
         ''' Label for constant changing values '''
 
-        self.lbl_const_val = ttk.Label(self.root, text="Constant Values", font=Constant_val_font,
-                                       background='grey')
+        self.lbl_const_val = ttk.Label(self.root, text="Constant Values", font=Constant_val_font)
         self.lbl_const_val.place(relx=0.67, rely=0.15, relheight=0.05, relwidth=0.22)
 
         ''' Camera Label to hold the camera Label name '''
 
-        self.lbl_cont_val = ttk.Label(self.root, text="Camera", font=Constant_val_font,
-                                      background='grey')
+        self.lbl_cont_val = ttk.Label(self.root, text="Camera", font=Constant_val_font)
         self.lbl_cont_val.place(relx=0.15, rely=0.15, relheight=0.05, relwidth=0.19)
 
         ''' mainloop Exit Button'''
