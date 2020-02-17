@@ -1,7 +1,12 @@
 """
-_istimons
 
-tkinter GUI gave it a shot; webCam in tkinter
+camera.py
+
+This programs allows us to show camera in tkinter.
+
+@Author _istimons
+@Version 1.0 12/2020
+
 
 """
 
