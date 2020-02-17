@@ -5,7 +5,7 @@ camera.py
 This programs allows us to show camera in tkinter.
 
 @Author _istimons
-@Version 1.0 12/2020
+@Version 1.0 11/2019
 
 
 """
