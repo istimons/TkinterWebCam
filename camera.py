@@ -45,21 +45,22 @@ class App:
         color_label = ttk.Label(self.root, background='blue', font=Main_label_font)
         color_label.place(relx=0.0, rely=0.0, relheight=0.1, relwidth=4)
 
-        ''' Create a canvas that can fit the above video source size'''
+        ''' Canvas to encapsulate camera frame; 
+            Create a canvas that can fit the above video source size         '''
 
         self.canvas = tkinter.Canvas(self.root)
-        self.canvas.place(relx=0.02, rely=0.21, relheight=0.37, relwidth=0.5)
+        self.canvas.place(relx=0.02, rely=0.21, relheight=0.45, relwidth=0.6)
 
         ''' Label for constant changing values '''
 
         self.lbl_const_val = ttk.Label(self.root, text="Constant Values", font=Constant_val_font,
-                                       background='forestgreen')
+                                       background='grey')
         self.lbl_const_val.place(relx=0.67, rely=0.15, relheight=0.05, relwidth=0.22)
 
-        ''' Camera Label to hold the camera'''
+        ''' Camera Label to hold the camera Label name '''
 
         self.lbl_cont_val = ttk.Label(self.root, text="Camera", font=Constant_val_font,
-                                      background='forestgreen')
+                                      background='grey')
         self.lbl_cont_val.place(relx=0.15, rely=0.15, relheight=0.05, relwidth=0.19)
 
         ''' mainloop Exit Button'''
@@ -73,7 +74,7 @@ class App:
         self.update()
 
         ''' Graph Figure and data
-            This graph will be improved to constantly show constant changing values 
+            This graph will be improved to constantly show constant changing values
         '''
 
         self.fig = Figure(figsize=(5, 4), dpi=100)
@@ -84,7 +85,7 @@ class App:
 
         self.graghPlot = FigureCanvasTkAgg(self.fig, master=self.root)
         self.graghPlot.draw()
-        self.graghPlot.get_tk_widget().place(relx=0.02, rely=0.56, relheight=0.37, relwidth=0.5)
+        self.graghPlot.get_tk_widget().place(relx=0.02, rely=0.61, relheight=0.37, relwidth=0.5)
 
     def update(self):
         """ Get a frame from the video source (Real time Video Frames Update By Web The Camera)"""
@@ -99,7 +100,7 @@ class App:
     @property
     def get_frame(self):
 
-        """ The property method takes the get as an arg and returns required objects 
+        """ The property method takes the get as an arg and returns required objects
             of the get_frame in this class
             Real Time Values Update in a tkinter Label (How To)
         """
@@ -110,7 +111,7 @@ class App:
             values = "%s\n" % frame[0:-1]
 
             const_lbl = Label(self.root, text=values, bg='black', fg='white')
-            const_lbl.place(relx=0.53, rely=0.21, relheight=0.35, relwidth=0.45)
+            const_lbl.place(relx=0.53, rely=0.21, relheight=0.34, relwidth=0.45)
 
             if ret:
                 ''' Return a boolean success flag and the current frame converted to BGR '''
