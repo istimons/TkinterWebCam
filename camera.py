@@ -19,7 +19,6 @@ import PIL.Image
 import PIL.ImageTk
 import cv2
 import numpy as np
-from PIL.ImageTk import PhotoImage
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 from matplotlib.figure import Figure
 
@@ -33,8 +32,6 @@ class App:
         (ie statically typed control to the dynamically typed Python)
             photo: PhotoImage
     """
-
-    photo: PhotoImage
 
     def __init__(self):
 
@@ -118,7 +115,7 @@ class App:
 
             if ret:
                 ''' Return a boolean success flag and the current frame converted to BGR '''
-                return ret, cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                return ret, cv2.cvtColor(frame, cv2.COLOR_BGRA2RGBA)
             else:
                 return ret, None
         else:
@@ -134,7 +131,7 @@ class App:
 ''' Start Application '''
 app = App()
 
-''' Get screen width and height '''
+''' Get screen width and height to have a large screen'''
 
 ws = app.root.winfo_screenwidth()  # width of the screen
 hs = app.root.winfo_screenheight()  # height of the screen
