@@ -4,10 +4,10 @@ from imutils.video import VideoStream
 import time
 
 # Start Video Streams
-vs = VideoStream(0).start()
-time.sleep(2.0)
+vidStreamer = VideoStream(0).start()
+time.sleep(1.5)
 
 # start the app
-pba = App(vs)
+mainStart = App(vidStreamer)
 
-pba.root.mainloop()
+mainStart.root.mainloop()
