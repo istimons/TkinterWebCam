@@ -1,12 +1,7 @@
 """
+_istimons
 
-camera.py
-
-This programs allows us to show camera in tkinter.
-
-@Author _istimons
-@Version 1.0 11/2019
-
+tkinter GUI gave it a shot; webCam in tkinter
 
 """
 
@@ -19,6 +14,7 @@ import PIL.Image
 import PIL.ImageTk
 import cv2
 import numpy as np
+from PIL.ImageTk import PhotoImage
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 from matplotlib.figure import Figure
 
@@ -26,43 +22,44 @@ Main_label_font = "-family {Perpetua Titling MT} -size 40 -weight normal -slant 
 Constant_val_font = "-family {Perpetua Titling MT} -size 25 -weight normal -slant roman -underline 0 -overstrike 0"
 
 
-class App:
+class App(object):
 
     """ This shows a variable type, used to show how the type of variable should be.
         (ie statically typed control to the dynamically typed Python)
             photo: PhotoImage
     """
 
+    photo: PhotoImage
+
     def __init__(self):
-
+        
+        """ Tkinter Labels """        
+        self.canvas = tkinter.Canvas(self.root)
+        self.lbl_cont_val = ttk.Label(self.root, text="Camera", font=Constant_val_font)
+        self.lbl_const_val = ttk.Label(self.root, text="Constant Values", font=Constant_val_font)
+        
         """ open computer web camera """
-
         self.vid = cv2.VideoCapture(0)
 
         self.root = Tk()
         self.root.wm_title("Tkinter Camera")
 
         ''' Create a main window top color Label'''
-
         color_label = ttk.Label(self.root, background='blue', font=Main_label_font)
         color_label.place(relx=0.0, rely=0.0, relheight=0.1, relwidth=4)
-
+        
+    def show_cam(self):
         ''' Canvas to encapsulate camera frame; 
             Create a canvas that can fit the above video source size         '''
-
-        self.canvas = tkinter.Canvas(self.root)
         self.canvas.place(relx=0.02, rely=0.21, relheight=0.45, relwidth=0.6)
-
+        
+    def show_const_labels(self):
         ''' Label for constant changing values '''
-
-        self.lbl_const_val = ttk.Label(self.root, text="Constant Values", font=Constant_val_font)
-        self.lbl_const_val.place(relx=0.67, rely=0.15, relheight=0.05, relwidth=0.22)
-
         ''' Camera Label to hold the camera Label name '''
-
-        self.lbl_cont_val = ttk.Label(self.root, text="Camera", font=Constant_val_font)
+        self.lbl_const_val.place(relx=0.67, rely=0.15, relheight=0.05, relwidth=0.22)
         self.lbl_cont_val.place(relx=0.15, rely=0.15, relheight=0.05, relwidth=0.19)
-
+        
+    def __exit__(self, exc_type, exc_val, exc_tb):        
         ''' mainloop Exit Button'''
 
         self.exit_btn = ttk.Button(self.root, text="Exit", command=self.__del__)
@@ -115,7 +112,7 @@ class App:
 
             if ret:
                 ''' Return a boolean success flag and the current frame converted to BGR '''
-                return ret, cv2.cvtColor(frame, cv2.COLOR_BGRA2RGBA)
+                return ret, cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             else:
                 return ret, None
         else:
@@ -131,7 +128,7 @@ class App:
 ''' Start Application '''
 app = App()
 
-''' Get screen width and height to have a large screen'''
+''' Get screen width and height '''
 
 ws = app.root.winfo_screenwidth()  # width of the screen
 hs = app.root.winfo_screenheight()  # height of the screen
