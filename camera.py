@@ -5,7 +5,6 @@ tkinter GUI gave it a shot; webCam in tkinter
 
 """
 
-
 import tkinter
 from tkinter import *
 from tkinter import ttk
@@ -23,7 +22,6 @@ Constant_val_font = "-family {Perpetua Titling MT} -size 25 -weight normal -slan
 
 
 class App(object):
-
     """ This shows a variable type, used to show how the type of variable should be.
         (ie statically typed control to the dynamically typed Python)
             photo: PhotoImage
@@ -33,6 +31,9 @@ class App(object):
 
     def __init__(self):
 
+        self.root = Tk()
+        self.root.wm_title("Tkinter Camera")
+
         """ Tkinter Labels """
         self.canvas = tkinter.Canvas(self.root)
         self.lbl_cont_val = ttk.Label(self.root, text="Camera", font=Constant_val_font)
@@ -41,25 +42,19 @@ class App(object):
         """ open computer web camera """
         self.vid = cv2.VideoCapture(0)
 
-        self.root = Tk()
-        self.root.wm_title("Tkinter Camera")
-
         ''' Create a main window top color Label'''
         color_label = ttk.Label(self.root, background='blue', font=Main_label_font)
         color_label.place(relx=0.0, rely=0.0, relheight=0.1, relwidth=4)
 
-    def show_cam(self):
         """ Canvas to encapsulate camera frame; 
             Create a canvas that can fit the above video source size         """
         self.canvas.place(relx=0.02, rely=0.21, relheight=0.45, relwidth=0.6)
 
-    def show_const_labels(self):
         """ Label for constant changing values """
         ' Camera Label to hold the camera Label name '
         self.lbl_const_val.place(relx=0.67, rely=0.15, relheight=0.05, relwidth=0.22)
         self.lbl_cont_val.place(relx=0.15, rely=0.15, relheight=0.05, relwidth=0.19)
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
         """ mainloop Exit Button"""
 
         self.exit_btn = ttk.Button(self.root, text="Exit", command=self.__del__)
@@ -69,8 +64,7 @@ class App(object):
 
         self.delay = 15
         self.update()
-    
-    def graph_fig(self):
+
         """ Graph Figure and data
             This graph will be improved to constantly show constant changing values
         """
@@ -111,26 +105,32 @@ class App(object):
 
             if ret:
                 ''' Return a boolean success flag and the current frame converted to BGR '''
-                return ret, cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                return ret, cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
             else:
                 return ret, None
         else:
             return None
 
-    ''' Release the video source when the object is destroyed '''
+    ' Release the video source when the object is destroyed '
+
     def __del__(self):
         if self.vid.isOpened():
             self.vid.release()
             self.root.destroy()
 
 
-''' Start Application '''
-app = App()
+def main():
+    """ Start Application """
+    app = App()
 
-''' Get screen width and height '''
+    ''' Get screen width and height '''
 
-ws = app.root.winfo_screenwidth()  # width of the screen
-hs = app.root.winfo_screenheight()  # height of the screen
+    ws = app.root.winfo_screenwidth()  # width of the screen
+    hs = app.root.winfo_screenheight()  # height of the screen
 
-app.root.geometry('%dx%d' % (ws, hs))
-app.root.mainloop()
+    app.root.geometry('%dx%d' % (ws, hs))
+    app.root.mainloop()
+
+
+if __name__ == '__main__':
+    main()
