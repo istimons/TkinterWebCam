@@ -32,12 +32,12 @@ class App(object):
     photo: PhotoImage
 
     def __init__(self):
-        
-        """ Tkinter Labels """        
+
+        """ Tkinter Labels """
         self.canvas = tkinter.Canvas(self.root)
         self.lbl_cont_val = ttk.Label(self.root, text="Camera", font=Constant_val_font)
         self.lbl_const_val = ttk.Label(self.root, text="Constant Values", font=Constant_val_font)
-        
+
         """ open computer web camera """
         self.vid = cv2.VideoCapture(0)
 
@@ -47,20 +47,20 @@ class App(object):
         ''' Create a main window top color Label'''
         color_label = ttk.Label(self.root, background='blue', font=Main_label_font)
         color_label.place(relx=0.0, rely=0.0, relheight=0.1, relwidth=4)
-        
+
     def show_cam(self):
-        ''' Canvas to encapsulate camera frame; 
-            Create a canvas that can fit the above video source size         '''
+        """ Canvas to encapsulate camera frame; 
+            Create a canvas that can fit the above video source size         """
         self.canvas.place(relx=0.02, rely=0.21, relheight=0.45, relwidth=0.6)
-        
+
     def show_const_labels(self):
-        ''' Label for constant changing values '''
-        ''' Camera Label to hold the camera Label name '''
+        """ Label for constant changing values """
+        ' Camera Label to hold the camera Label name '
         self.lbl_const_val.place(relx=0.67, rely=0.15, relheight=0.05, relwidth=0.22)
         self.lbl_cont_val.place(relx=0.15, rely=0.15, relheight=0.05, relwidth=0.19)
-        
-    def __exit__(self, exc_type, exc_val, exc_tb):        
-        ''' mainloop Exit Button'''
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """ mainloop Exit Button"""
 
         self.exit_btn = ttk.Button(self.root, text="Exit", command=self.__del__)
         self.exit_btn.place(relx=0.75, rely=0.06, relheight=0.035, relwidth=0.13)
@@ -69,20 +69,19 @@ class App(object):
 
         self.delay = 15
         self.update()
-
-        ''' Graph Figure and data
+    
+    def graph_fig(self):
+        """ Graph Figure and data
             This graph will be improved to constantly show constant changing values
-        '''
-
-        self.fig = Figure(figsize=(5, 4), dpi=100)
-        self.t = np.arange(0, 3, .01)
-        self.fig.add_subplot(111).plot(self.t, 2 * np.sin(2 * np.pi * self.t))
+        """
+        fig = Figure(figsize=(5, 4), dpi=100)
+        t = np.arange(0, 3, .01)
+        fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
 
         ''' plotting Canvas. A tk.DrawingArea.'''
-
-        self.graghPlot = FigureCanvasTkAgg(self.fig, master=self.root)
-        self.graghPlot.draw()
-        self.graghPlot.get_tk_widget().place(relx=0.02, rely=0.61, relheight=0.37, relwidth=0.5)
+        gragh_plot = FigureCanvasTkAgg(fig, master=self.root)
+        gragh_plot.draw()
+        gragh_plot.get_tk_widget().place(relx=0.02, rely=0.61, relheight=0.37, relwidth=0.5)
 
     def update(self):
         """ Get a frame from the video source (Real time Video Frames Update By Web The Camera)"""
