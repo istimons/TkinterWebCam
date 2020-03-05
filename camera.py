@@ -105,7 +105,7 @@ class App(object):
 
             if ret:
                 ''' Return a boolean success flag and the current frame converted to BGR '''
-                return ret, cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
+                return ret, cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
             else:
                 return ret, None
         else:
