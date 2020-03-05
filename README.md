@@ -5,4 +5,4 @@ Ideally show web cam with tkinter GUI.
 
 To start run 
 
-main.py
+camera.py
