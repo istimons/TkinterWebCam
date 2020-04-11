@@ -36,8 +36,9 @@ class App(object):
 
         """ Tkinter Labels """
         self.canvas = tkinter.Canvas(self.root)
-        self.lbl_cont_val = ttk.Label(self.root, text="Camera", font=Constant_val_font)
+        self.lbl_cam_val = ttk.Label(self.root, text="Camera", font=Constant_val_font)
         self.lbl_const_val = ttk.Label(self.root, text="Constant Values", font=Constant_val_font)
+        self.lbl_data_visualization_val = ttk.Label(self.root, text="Data Visualization", font=Constant_val_font)
 
         """ open computer web camera """
         self.vid = cv2.VideoCapture(0)
@@ -48,12 +49,13 @@ class App(object):
 
         """ Canvas to encapsulate camera frame; 
             Create a canvas that can fit the above video source size         """
-        self.canvas.place(relx=0.02, rely=0.21, relheight=0.45, relwidth=0.6)
+        self.canvas.place(relx=0.02, rely=0.21, relheight=0.42, relwidth=0.96)
 
         """ Label for constant changing values """
         ' Camera Label to hold the camera Label name '
-        self.lbl_const_val.place(relx=0.67, rely=0.15, relheight=0.05, relwidth=0.22)
-        self.lbl_cont_val.place(relx=0.15, rely=0.15, relheight=0.05, relwidth=0.19)
+        self.lbl_cam_val.place(relx=0.5, rely=0.15, relheight=0.05, relwidth=0.19)
+        self.lbl_const_val.place(relx=0.7, rely=0.64, relheight=0.05, relwidth=0.22)
+        self.lbl_data_visualization_val.place(relx=0.1, rely=0.64, relheight=0.05, relwidth=0.4)
 
         """ mainloop Exit Button"""
 
@@ -75,7 +77,7 @@ class App(object):
         ''' plotting Canvas. A tk.DrawingArea.'''
         gragh_plot = FigureCanvasTkAgg(fig, master=self.root)
         gragh_plot.draw()
-        gragh_plot.get_tk_widget().place(relx=0.02, rely=0.61, relheight=0.37, relwidth=0.5)
+        gragh_plot.get_tk_widget().place(relx=0.02, rely=0.7, relheight=0.28, relwidth=0.5)
 
     def update(self):
         """ Get a frame from the video source (Real time Video Frames Update By Web The Camera)"""
@@ -101,7 +103,7 @@ class App(object):
             values = "%s\n" % frame[0:-1]
 
             const_lbl = Label(self.root, text=values, bg='black', fg='white')
-            const_lbl.place(relx=0.53, rely=0.21, relheight=0.34, relwidth=0.45)
+            const_lbl.place(relx=0.67, rely=0.7, relheight=0.28, relwidth=0.3)
 
             if ret:
                 ''' Return a boolean success flag and the current frame converted to BGR '''
